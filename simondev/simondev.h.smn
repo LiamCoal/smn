@@ -72,27 +72,32 @@ module simon.io;
 end;
 
 module simon.math;
-    func inline int, add, int& a, int b;
+    /cpp/ template<typename T> /
+    func inline int, add, T& a, T b;
         /cpp/ a += b; /
         return a;
     end;
 
-    func inline int, subtract, int& a, int b;
+    /cpp/ template<typename T> /
+    func inline int, subtract, T& a, T b;
         /cpp/ a -= b; /
         return a;
     end;
 
-    func inline int, multiply, int& a, int b;
+    /cpp/ template<typename T> /
+    func inline int, multiply, T& a, T b;
         /cpp/ a *= b; /
         return a;
     end;
 
-    func inline int, divide, int& a, int b;
+    /cpp/ template<typename T> /
+    func inline int, divide, T& a, T b;
         /cpp/ a /= b; /
         return a;
     end;
 
-    func inline int, modulus, int& a, int b;
+    /cpp/ template<typename T> /
+    func inline int, modulus, T& a, T b;
         /cpp/ a %= b; /
         return a;
     end;
