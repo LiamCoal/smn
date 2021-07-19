@@ -26,7 +26,8 @@
 
 typedef std::string str;
 
-struct global_t {
+struct global_t
+{
     Language language;
     std::iostream *output;
     bool is_test;

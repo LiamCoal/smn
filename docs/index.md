@@ -2,7 +2,7 @@
 
 ## Documentation
 
-[readme.md](https://github.com/LiamCoal/smn/blob/master/readme.md)
+* The project's [readme.md](https://github.com/LiamCoal/smn/blob/master/readme.md)
 
 ## Downloads
 

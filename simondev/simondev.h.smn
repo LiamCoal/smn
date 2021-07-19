@@ -8,20 +8,56 @@ include string;
 /cpp/ typedef char* cstr; /
 
 module simon;
+    # Starts the stack with a size of 1024. The size
+    # cannot be modified.
     declare void, start_stack();
+
+    # Destroys the stack.
     declare void, end_stack();
+
+    # Appends a single byte onto the stack.
+    #
+    # fixme: add overflow detection
+    # fixme: add uninitialized detection
     declare void, push(char);
+
+    # Appends multiple bytes onto the stack.
+    #
+    # fixme: add overflow detection
+    # fixme: add uninitialized detection
     declare void, push(char*, int);
+
+    # Removes the last byte from the stack.
+    #
+    # fixme: add underflow detection
+    # fixme: add uninitialized detection
     declare char, pop();
+
+    # Removes multiple bytes from the stack.
+    #
+    # fixme: add underflow detection
+    # fixme: add uninitialized detection
     declare char*, pop(int);
+
+    # Looks at the last byte on the stack without
+    # removing it.
+    #
+    # fixme: add underflow detection
+    # fixme: add uninitialized detection
     declare char, peek(int);
+
+    #
+    # fixme: add underflow detection
+    # fixme: add uninitialized detection
     declare char*, peek(int, int);
 end;
 
 module simon.io;
+    # include C++ io
     include iostream;
     include fstream;
 
+    # stream typedefs
     /cpp/ typedef std::ifstream ifstr; /
     /cpp/ typedef std::ofstream ofstr; /
     /cpp/ typedef std::fstream iofstr; /
@@ -30,41 +66,53 @@ module simon.io;
     /cpp/ typedef std::ostream ostr; /
     /cpp/ typedef std::iostream iostr; /
 
+    # Prints an object followed by a line ending
+    # to an output stream.
     /cpp/ template<class T> /
     func inline void, strm_println, ostr& stream, const T& o;
         /cpp/ stream << o << std::endl; /
     end;
 
+    # Prints an object to an output stream.
     /cpp/ template<class T> /
     func inline void, strm_print, ostr& stream, const T& o;
         /cpp/ stream << o; /
     end;
 
+    # Prints an object followed by a line ending
+    # to stdout.
     /cpp/ template<class T> /
     func inline void, println, const T& o;
         /cpp/ strm_println<T>(std::cout, o); /
     end;
 
+    # Prints an object to stdout.
     /cpp/ template<class T> /
     func inline void, print, const T& o;
         /cpp/ strm_print<T>(std::cout, o); /
     end;
 
+    # Prints an object followed by a line ending
+    # to stderr.
     /cpp/ template<class T> /
     func inline void, eprintln, const T& o;
         /cpp/ strm_println<T>(std::cerr, o); /
     end;
 
+    # Prints an object to stderr.
     /cpp/ template<class T> /
     func inline void, eprint, const T& o;
         /cpp/ strm_print<T>(std::cerr, o); /
     end;
 
+    # Reads an object from an input stream.
     /cpp/ template<class T> /
     func inline void, input, istr& s, T& o;
         /cpp/ s >> o; /
     end;
 
+    # Writes an object to an output stream. Same
+    # as print.
     /cpp/ template<class T> /
     func inline void, output, ostr& s, T& o;
         /cpp/ s << o; /
@@ -72,30 +120,40 @@ module simon.io;
 end;
 
 module simon.math;
+    # Adds two objects, saving the output into
+    # the first one.
     /cpp/ template<typename T> /
     func inline int, add, T& a, T b;
         /cpp/ a += b; /
         return a;
     end;
 
+    # Subtracts two objects, saving the output
+    # into the first one.
     /cpp/ template<typename T> /
     func inline int, subtract, T& a, T b;
         /cpp/ a -= b; /
         return a;
     end;
 
+    # Multiplies two objects, saving the output
+    # into the first one.
     /cpp/ template<typename T> /
     func inline int, multiply, T& a, T b;
         /cpp/ a *= b; /
         return a;
     end;
 
+    # Divides two objects, saving the output into
+    # the first one.
     /cpp/ template<typename T> /
     func inline int, divide, T& a, T b;
         /cpp/ a /= b; /
         return a;
     end;
 
+    # Gets the remainder of a division between two
+    # objects, saving the output into the first one.
     /cpp/ template<typename T> /
     func inline int, modulus, T& a, T b;
         /cpp/ a %= b; /
